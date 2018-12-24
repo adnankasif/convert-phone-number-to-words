@@ -1,11 +1,9 @@
 class NumberConverter
 
     def initialize
-        
         get_dictionary
         get_keypad
-        get_input
-        
+        get_input unless ENV["NUMBER_CONVERTER_ENV"] == "test"
     end
 
     # Read the dictionary file and store contents in a global array
@@ -43,7 +41,6 @@ class NumberConverter
 
     # Method to create all possible word combinations using the letters.
     def get_key_combinations(number)
-        time_start = Time.now()
         check_valid_number(number)
         number_array = number.split("")
 
@@ -58,8 +55,6 @@ class NumberConverter
         end
 
         search_word_combinations(key_words)
-        time_end = Time.now()
-        puts "Time #{time_end.to_f - time_start.to_f}"
     end
 
     # Method to search all possible combinations against dictionary.
